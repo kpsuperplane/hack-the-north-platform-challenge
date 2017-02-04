@@ -7,7 +7,7 @@ import IoEmail from 'react-icons/lib/io/email';
 import IoIosTelephone from 'react-icons/lib/io/ios-telephone';
 import IoIosBriefcase from 'react-icons/lib/io/ios-briefcase';
 import IoClose from 'react-icons/lib/io/close';
-import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
+import IoGear from 'react-icons/lib/io/ios-gear';
 
 class Details extends Component {
     constructor(){
@@ -23,7 +23,7 @@ class Details extends Component {
     render() {
         const {active} = this.props;
         const {changeStatus} = this;
-        if(active == null) return <div id="details" style={{height: window.innerHeight-46, display:"none"}}></div>
+        if(active == null) return <div id="details" style={{height: window.innerHeight-46}} className="empty"><h1 id="details-placeholder"><IoGear /></h1></div>
         console.log(active);
         const position = {lat: active.latitude, lng: active.longitude};
         const sortedSkills = active.skills.sort((a,b)=>b.rating-a.rating);
@@ -47,19 +47,7 @@ class Details extends Component {
         <Row>
             <Col sm="auto" lg="6"><span className="details-light"><IoIosBriefcase /></span>{active.company}</Col>
         </Row>
-        <GoogleMapLoader
-            containerElement={<div id="details-map"/>}
-            googleMapElement={
-                <GoogleMap
-                    defaultOptions={{
-                        scrollwheel: false
-                    }}
-                    defaultZoom={7}
-                    center={position}
-                >   <Marker position={position} />
-                </GoogleMap>
-            }
-        />
+        <img id="details-map" alt="Map" src={"https://maps.googleapis.com/maps/api/staticmap?center="+position.lat+","+position.lng+"&zoom=13&size=640x200&maptype=roadmap&markers=color:blue%7C"+position.lat+","+position.lng}/>
        </div>);
     }
 }
