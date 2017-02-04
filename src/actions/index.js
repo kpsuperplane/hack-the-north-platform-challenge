@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export const map = connect(
+export const map = connect( //one map function throughout the entire application
   mapStateToProps,
   mapDispatchToProps
 )

@@ -16,9 +16,12 @@ const store = (state = {submissions:[], filters: [], original: null, active: nul
       return {...state, submissions: [...state.submissions], active: Object.assign(state.active)};
     case 'FILTER_DATA':
       const filters = action.payload;
+
+      //Filters for LokiDB
       var lokiFilters = [];
       var lokiSort = [];
-      for(var i = 0; i < filters.length; i++){
+
+      for(var i = 0; i < filters.length; i++){ //loop through all filters
         var filter = {};
         const searchReg = new RegExp(filters[i][1], "i");
         switch(filters[i][0]){
@@ -29,7 +32,6 @@ const store = (state = {submissions:[], filters: [], original: null, active: nul
               field = field.substring(1);
               descending = true;
             }
-            console.log(field);
             if(fields.indexOf(field) !== -1) lokiSort.push([field, descending]);
             continue;
           case "nameOrEmail":
@@ -43,8 +45,9 @@ const store = (state = {submissions:[], filters: [], original: null, active: nul
         }
         lokiFilters.push(filter);
       }
-      if(lokiSort.length == 0) lokiSort = ["name"];
-      console.log(lokiSort);
+
+      if(lokiSort.length === 0) lokiSort = ["name"]; //sort by name descending my default
+
       return {...state, filters: filters, submissions: state.original.chain().find({"$and": lokiFilters}).compoundsort(lokiSort).data()};
     default:
         return state;

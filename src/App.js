@@ -14,7 +14,7 @@ class App extends Component {
       searching: false,
       suggestion: "  Type to search..."
     }
-    this.checkTab = this.checkTabMethod.bind(this);
+    this.checkEnter = this.checkEnterMethod.bind(this);
     this.searchChange = this.searchChangeMethod.bind(this);
     this.typingTimeout = null;
     this.typeCount = 0;
@@ -35,12 +35,14 @@ class App extends Component {
       var metrics = context.measureText(this.state.search);
       return metrics.width*1.0315+10;
   }
-  checkTabMethod(e){
+
+  checkEnterMethod(e){ //autocompletes on "enter"
     if(e.key === 'Enter'){
       this.setState({search: this.state.search + this.state.suggestion, suggestion: ""});
     }
   }
-  maybeFocus(e){
+
+  maybeFocus(e){ //decide if to focus the main input on keyboard event
     if(e.target.tagName.toLowerCase() !== 'input' && e.keyCode !== 40 && e.keyCode !== 38) this.refs.searchField.focus();
     else if(e.keyCode === 38 || e.keyCode === 40){
       e.preventDefault();
@@ -64,15 +66,17 @@ class App extends Component {
       }
     } 
   }
+
   componentDidMount() {
     window.addEventListener('keydown', this.maybeFocus.bind(this));
   }
   componentWillUnmount() {
       window.removeEventListener('keydown', this.maybeFocus.bind(this));
   }
-  searchChangeMethod(e){
+
+  searchChangeMethod(e){ //handle the searchbar
     if(this.typingTimeout !== null) clearTimeout(this.typingTimeout);
-    let v = e.target.value.trim();
+    let v = e.target.value.trim(); //searchbar value
     var suggestion = "";
     const {props} = this;
     var newFilters = [];
@@ -98,11 +102,12 @@ class App extends Component {
         }
       } 
     }
-    if(this.typeCount % 3) props.filterData(newFilters);
+    if(this.typeCount % 3) props.filterData(newFilters); //auto search every 3 keystrokes
     this.typeCount++;
-    this.typingTimeout = setTimeout(()=>{props.filterData(newFilters);this.typeCount=0;this.setState({searching: false});}, 250);
+    this.typingTimeout = setTimeout(()=>{props.filterData(newFilters);this.typeCount=0;this.setState({searching: false});}, 250); //autosearch after 250ms delay if not interrupted by another stroke
     this.setState({search: e.target.value, suggestion: suggestion, searching: true});
   }
+
   render() {
     return (
       <div>
@@ -110,7 +115,7 @@ class App extends Component {
           <div className='logo'>
             <img src={logoSvg} alt="logo"/>
           </div>
-          <input type="text" tabIndex="0" id="main-search" ref="searchField" onKeyPress={this.checkTab} style={{width: this.getSearchWidth()}} value={this.state.search} onChange={this.searchChange} className="search-field" />
+          <input type="text" tabIndex="0" id="main-search" ref="searchField" onKeyPress={this.checkEnter} style={{width: this.getSearchWidth()}} value={this.state.search} onChange={this.searchChange} className="search-field" />
           <span id="suggestion" className="search-field">{this.state.suggestion}</span>
         </header>
         <section id="main-content" className={this.state.searching?"searching":""}><Main /></section>

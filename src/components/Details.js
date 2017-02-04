@@ -12,7 +12,7 @@ import IoGear from 'react-icons/lib/io/ios-gear';
 class Details extends Component {
     constructor(){
         super();
-        this.changeStatus = this.changeStatusMethod.bind(this);
+        this.changeStatus = this.changeStatusMethod.bind(this); //autobind this on construction to improve performance
     }
     capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
@@ -23,9 +23,13 @@ class Details extends Component {
     render() {
         const {active} = this.props;
         const {changeStatus} = this;
-        if(active == null) return <div id="details" style={{height: window.innerHeight-46}} className="empty"><h1 id="details-placeholder"><IoGear /></h1></div>
-        const position = {lat: active.latitude, lng: active.longitude};
-        const sortedSkills = active.skills.sort((a,b)=>b.rating-a.rating);
+
+        if(active == null) return <div id="details" style={{height: window.innerHeight-46}} className="empty"><h1 id="details-placeholder"><IoGear /></h1></div> //blank "details" tab 
+
+        const position = {lat: active.latitude, lng: active.longitude}; //extract our position
+
+        const sortedSkills = active.skills.sort((a,b)=>b.rating-a.rating); //sort our skills
+
         return (<div id="details" style={{height: window.innerHeight-46}}><Media id="details-submission">
             <span className="media-left"><img key={active.email} className="media-object submission-image" src={active.picture} alt={active.name} /></span>
             <Media body className="submission-body">
