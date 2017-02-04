@@ -40,7 +40,7 @@ class App extends Component {
     }
   }
   maybeFocus(e){
-    if(e.target.tagName.toLowerCase() !== 'input' && e.keyCode >= 48 && e.keyCode <= 90) this.refs.searchField.focus();
+    if(e.target.tagName.toLowerCase() !== 'input' && e.keyCode !== 40 && e.keyCode !== 38) this.refs.searchField.focus();
     else if(e.keyCode === 38 || e.keyCode === 40){
       e.preventDefault();
       const {submissions, active, makeActive} = this.props;
@@ -79,7 +79,7 @@ class App extends Component {
       suggestion = "  Type to search...";
     }else{
       var filters = v.split(',').map(str=>str.trim());
-      var fields = ["name", "email", "sortby", "company", "phone", "country", "status"]
+      var fields = ["name", "email", "sortby", "company", "phone", "country", "status", "skill"]
       var lastFilter = filters[filters.length-1];
       if(lastFilter !== "")
         for(var field of fields){

@@ -15,8 +15,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchData: fetchData,
-    makeActive: submission=>dispatch({type: 'ACTIVE_SUBMISSION', payload: submission}),
-    filterData: filters=>dispatch({type: 'FILTER_DATA', payload: filters})
+    updateSubmission: (submission, value) => dispatch({type: 'UPDATE_SUBMISSION', payload: {submission: submission, value: value}}),
+    makeActive: submission => dispatch({type: 'ACTIVE_SUBMISSION', payload: submission}),
+    filterData: filters => dispatch({type: 'FILTER_DATA', payload: filters})
   }
 }
 

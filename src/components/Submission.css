@@ -13,6 +13,12 @@
     padding:3px 5px 3px 0px;
     display:block;
     outline:0;
+    width:100%;
+    border-style:none;
+    text-align:left;
+    outline:0;
+    margin:0;
+    cursor:pointer;
     border-left:5px solid transparent;
     background:transparent;
     border-bottom:1px solid #FAFAFA;
@@ -23,6 +29,7 @@
 }
 .submission:focus, .submission.active{
     text-decoration:none;
+    outline:0;
     background:#E1F6FC;
     border-left:5px solid #21BAED;
 }
@@ -30,11 +37,40 @@
     margin:0;
     padding:0;
 }
+.submission .media-left{
+    position:relative;
+}
+.submission-status{
+    position:absolute;
+    right:10px;
+    bottom:10px;
+    width:12px;
+    height:12px;
+    background:#000;
+    border-radius:100%;
+    border:1px solid #FFF;
+}
+.submission .badge{
+    margin-right: 0.5em;
+    border:1px solid rgba(0,0,0,0.1);
+    background:transparent;
+    color:rgba(0,0,0,0.5);  
+    font-weight:400;
+}
+.submission-status.in_review{
+    background:#AAA;
+}
+.submission-status.accepted{
+    background:#1ED624;
+}
+.submission-status.rejected{
+    background:#ED2121;
+}
 .submission-body{
     padding:0.5em;
 }
 .submission-body h5{
-    margin-top:2px;
+    margin-top:1px;
     font-size:16px; 
     color:rgba(0,0,0,0.75);
     margin-bottom:3px;
