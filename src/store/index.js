@@ -7,6 +7,7 @@ const store = (state = {submissions:[], filters: [], original: null, active: nul
       submissions.insert(action.payload);
       return {...state, filters: [], submissions: submissions.find(), original: submissions};
     case 'ACTIVE_SUBMISSION':
+      document.body.className=action.payload==null?"":"active";
       return {...state, active: action.payload};
     case 'UPDATE_SUBMISSION':
       const submission = Object.assign(state.original.findOne({email: action.payload.submission.email}), action.payload.value);

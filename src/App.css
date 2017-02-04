@@ -53,3 +53,13 @@ margin-left:-8px;
 #main-content.searching{
   opacity:0.45;
 }
+@media(max-width:768px){
+  html, body{
+    height:100%;
+  }
+  body.active:after{
+    display:block;
+    content: '';
+    height:50%;
+  }
+}

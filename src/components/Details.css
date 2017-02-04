@@ -52,6 +52,9 @@
 #details-status.rejected{
     background-color:#ED2121;
 }
+#details-close{
+    display:none;
+}
 @media(max-width:768px){
     #details .col{
         display:block;
@@ -77,5 +80,12 @@
         margin-top:0;
         margin:0.2em 10px;
         display:block;  
+    }
+    #details-close{
+        display:block;
+        padding:15px;
+        margin-right:10px;
+        border-style:none;
+        background:transparent;
     }
 }

@@ -6,6 +6,7 @@ import './Details.css';
 import IoEmail from 'react-icons/lib/io/email';
 import IoIosTelephone from 'react-icons/lib/io/ios-telephone';
 import IoIosBriefcase from 'react-icons/lib/io/ios-briefcase';
+import IoClose from 'react-icons/lib/io/close';
 import {GoogleMapLoader, GoogleMap, Marker} from "react-google-maps";
 
 class Details extends Component {
@@ -22,7 +23,7 @@ class Details extends Component {
     render() {
         const {active} = this.props;
         const {changeStatus} = this;
-        if(active == null) return <div id="details" style={{height: window.innerHeight-46}}></div>
+        if(active == null) return <div id="details" style={{height: window.innerHeight-46, display:"none"}}></div>
         console.log(active);
         const position = {lat: active.latitude, lng: active.longitude};
         const sortedSkills = active.skills.sort((a,b)=>b.rating-a.rating);
@@ -32,6 +33,7 @@ class Details extends Component {
                 <h5>{active.name}</h5>
                 <h6>{sortedSkills.map((skill)=><Badge className="skill" key={skill.skill}>{skill.skill} ({skill.rating})</Badge>)}</h6>
             </Media>
+            <button id="details-close" onClick={this.props.makeActive.bind(this, null)}><IoClose /></button>
             <select id="details-status" className={active.status} onChange={changeStatus} value={active.status}>
                 <option value="accepted">Accepted</option>
                 <option value="rejected">Rejected</option>
