@@ -4,6 +4,7 @@ import Details from './components/Details';
 import './App.css';
 import {map} from './actions';
 import logoSvg from './assets/logo.svg'
+import {fields} from './store';
 
 class App extends Component {
   constructor(){
@@ -79,7 +80,6 @@ class App extends Component {
       suggestion = "  Type to search...";
     }else{
       var filters = v.split(',').map(str=>str.trim());
-      var fields = ["name", "email", "sortby", "company", "phone", "country", "status", "skill"]
       var lastFilter = filters[filters.length-1];
       if(lastFilter !== "")
         for(var field of fields){
@@ -92,6 +92,9 @@ class App extends Component {
         const splitFilter = filter.split(':').map(str=>str.trim().toLowerCase());
         if(splitFilter.length === 2 && fields.indexOf(splitFilter[0]) !== -1){
           newFilters.push(splitFilter);
+        }
+        if(splitFilter.length === 1){
+          newFilters.push(['nameOrEmail', splitFilter]);
         }
       } 
     }

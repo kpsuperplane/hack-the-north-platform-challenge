@@ -24,7 +24,6 @@ class Details extends Component {
         const {active} = this.props;
         const {changeStatus} = this;
         if(active == null) return <div id="details" style={{height: window.innerHeight-46}} className="empty"><h1 id="details-placeholder"><IoGear /></h1></div>
-        console.log(active);
         const position = {lat: active.latitude, lng: active.longitude};
         const sortedSkills = active.skills.sort((a,b)=>b.rating-a.rating);
         return (<div id="details" style={{height: window.innerHeight-46}}><Media id="details-submission">
@@ -47,7 +46,7 @@ class Details extends Component {
         <Row>
             <Col sm="auto" lg="6"><span className="details-light"><IoIosBriefcase /></span>{active.company}</Col>
         </Row>
-        <img id="details-map" alt="Map" src={"https://maps.googleapis.com/maps/api/staticmap?center="+position.lat+","+position.lng+"&zoom=13&size=640x200&maptype=roadmap&markers=color:blue%7C"+position.lat+","+position.lng}/>
+        <img id="details-map" alt="Map" src={"https://maps.googleapis.com/maps/api/staticmap?center="+position.lat+","+position.lng+"&zoom=13&size=640x200&key=AIzaSyDU3UAm86uG_iRX2AneKU0FG6moOeufKo8&maptype=roadmap&markers=color:blue%7C"+position.lat+","+position.lng}/>
        </div>);
     }
 }
