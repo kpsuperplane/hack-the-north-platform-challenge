@@ -1,5 +1,9 @@
 # Hack the North Frontend Challenge Starter
 
+## Demo
+
+See demo at http://kpsuperplane.github.io/hack-the-north-platform-challenge
+
 ## Setup
 
 #### Clone this repo (DO NOT FORK!):
