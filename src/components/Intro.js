@@ -27,7 +27,7 @@ class Intro extends Component {
             <p>Use comma separated <strong>filters</strong> in the format <Badge color="primary">filter:value</Badge></p>
             <Table>
                 <tr><td>Fields</td><td>name, email, company, phone, status, skill <br/><small>These fields are <em>regex</em> compatible!</small></td></tr>
-                <tr><td>Sorting</td><td>Use <Badge>sort:[fieldname]</Badge> to sort by that field in descending order. To reverse the order, prepend an exclamation mark like so: <Badge>sort:!email</Badge></td></tr>
+                <tr><td>Sorting</td><td>Use <Badge>sort:[fieldname]</Badge> to sort by that field in ascending order. To reverse the order, prepend an exclamation mark like so: <Badge>sort:!email</Badge></td></tr>
             </Table>
             <h5>Example</h5>
             <p><code>name: Ad, skill: ios, skill: android, sort: !name</code><br/>This finds users with names including "ad" that have listed ios and android as their skills sorted by name in descending order. </p> 
