@@ -1,5 +1,5 @@
 import loki from 'lokijs';
-export const fields = ["name", "email", "company", "phone", "country", "status", "skill", "sort"];
+export const fields = ["name", "email", "company", "phone", "status", "skill", "sort"];
 const store = (state = {submissions:[], filters: [], original: null, active: null}, action) => {
   switch (action.type) {
     case 'STORE_DATA':
