@@ -63,6 +63,10 @@
 #details-close{
     display:none;
 }
+#details.empty h6{
+    color:#AAA;
+    text-align:center;
+}
 @media(max-width:768px){
     #details .col{
         display:block;

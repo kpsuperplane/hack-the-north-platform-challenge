@@ -24,7 +24,7 @@ class Details extends Component {
         const {active} = this.props;
         const {changeStatus} = this;
 
-        if(active == null) return <div id="details" style={{height: window.innerHeight-46}} className="empty"><h1 id="details-placeholder"><IoGear /></h1></div> //blank "details" tab 
+        if(active == null) return <div id="details" style={{height: window.innerHeight-46}} className="empty"><h1 id="details-placeholder"><IoGear /></h1><h6>Select a submission on the left</h6></div> //blank "details" tab 
 
         const position = {lat: active.latitude, lng: active.longitude}; //extract our position
 
