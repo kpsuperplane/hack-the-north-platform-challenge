@@ -6,7 +6,7 @@
     box-sizing:border-box;
     padding:3%;
     overflow-y:auto;
-    border-left:1px solid #FAFAFA;
+    border-left:1px solid #DDD;
     right:0;
 }
 #details-map{
